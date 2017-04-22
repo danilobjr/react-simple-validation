@@ -1,0 +1,25 @@
+{
+  "name": "react-simple-validation",
+  "version": "0.1.0",
+  "description": "Easy form validations with decorators in React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danilobjr/react-simple-validation.git"
+  },
+  "keywords": [
+    "react",
+    "form",
+    "validation",
+    "decorator"
+  ],
+  "author": "Danilo Barros <danilobjr@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danilobjr/react-simple-validation/issues"
+  },
+  "homepage": "https://github.com/danilobjr/react-simple-validation#readme"
+}
