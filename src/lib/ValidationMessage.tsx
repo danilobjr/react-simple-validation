@@ -1,4 +1,9 @@
-interface ValidationMessageProps extends CanValidate, React.HTMLProps<HTMLElement> {
+import * as React from 'react';
+import { CanValidateProps } from './CanValidateProps';
+import { ValidationFormOptions } from './ValidationFormOptions';
+import { getValidationResultFor } from './utils/getValidationResultFor';
+
+interface ValidationMessageProps extends CanValidateProps, React.HTMLProps<HTMLElement> {
     fieldName: string;
 }
 

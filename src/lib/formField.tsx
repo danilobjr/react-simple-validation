@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export const formField = (WrappedComponent: any) => {
     interface Props extends React.HTMLProps<HTMLElement> {}
 
