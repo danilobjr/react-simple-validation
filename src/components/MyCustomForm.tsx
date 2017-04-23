@@ -7,21 +7,24 @@ interface State {
 }
 
 const rules = {
-  name: 'Name is required'
+  name: 'Name is required',
+  surname: 'Surname is required'
 };
 
 @formValidation({ rules })
 export class MyCustomForm extends React.Component<ValidationFormProps, State> {
   state = {
-    name: ''
+    name: '',
+    surname: ''
   };
 
   render() {
-    const { name } = this.state;
+    const { name, surname } = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <InputField name="name" value={name} onChange={this.handleFieldChange} />
+        <InputField label="Name" name="name" value={name} onChange={this.handleFieldChange} />
+        <InputField label="Surname" name="surname" value={surname} onChange={this.handleFieldChange} />
         <button type="submit">Submit</button>
       </form>
     );
