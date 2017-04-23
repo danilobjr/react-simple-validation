@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types'
 import * as classNames from 'classnames';
 
 export const formField = (WrappedComponent: any) => {
@@ -22,12 +23,12 @@ export const formField = (WrappedComponent: any) => {
     }
 
     static contextTypes = {
-      errorClass: React.PropTypes.string,
-      getFieldValidationResult: React.PropTypes.func
+      errorClass: PropTypes.string,
+      getFieldValidationResult: PropTypes.func
     };
 
     static childContextTypes = {
-      isDirty: React.PropTypes.func
+      isDirty: PropTypes.func
     };
 
     getChildContext() {

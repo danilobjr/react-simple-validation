@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types'
 import { ValidationFormOptions } from './ValidationFormOptions';
 import { getValidationResultFor } from './utils/getValidationResultFor';
 
@@ -22,9 +23,9 @@ export const formValidation = (validationProps: ValidationFormOptions) => (Wrapp
     };
 
     static childContextTypes = {
-      rules: React.PropTypes.object,
-      errorClass: React.PropTypes.string,
-      getFieldValidationResult: React.PropTypes.func
+      rules: PropTypes.object,
+      errorClass: PropTypes.string,
+      getFieldValidationResult: PropTypes.func
     };
 
     getChildContext() {

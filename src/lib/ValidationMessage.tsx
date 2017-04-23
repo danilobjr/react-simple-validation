@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types'
 import { ValidationFormOptions } from './ValidationFormOptions';
 
 interface ValidationMessageProps extends React.HTMLProps<HTMLElement> {
@@ -27,6 +28,6 @@ export const ValidationMessage: React.SFC<ValidationMessageProps> = (props: Vali
 };
 
 ValidationMessage.contextTypes = {
-  getFieldValidationResult: React.PropTypes.func,
-  isDirty: React.PropTypes.func
+  getFieldValidationResult: PropTypes.func,
+  isDirty: PropTypes.func
 };
