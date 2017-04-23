@@ -4,7 +4,7 @@
   "description": "Easy form validations with decorators in React",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,18 @@
   "bugs": {
     "url": "https://github.com/danilobjr/react-simple-validation/issues"
   },
-  "homepage": "https://github.com/danilobjr/react-simple-validation#readme"
+  "homepage": "https://github.com/danilobjr/react-simple-validation#readme",
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.4"
+  },
+  "devDependencies": {
+    "@types/react": "^15.0.22",
+    "@types/react-dom": "^15.5.0",
+    "ts-loader": "^2.0.3",
+    "tslint": "^5.1.0",
+    "typescript": "^2.2.2"
+  }
 }
