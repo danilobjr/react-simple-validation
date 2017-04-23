@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { ValidationFormOptions } from './ValidationFormOptions';
-import { getValidationResultFor } from './utils/getValidationResultFor';
 
 interface ValidationMessageProps extends React.HTMLProps<HTMLElement> {
   fieldName: string;
   value: string | number | string[];
 }
 
-interface Context extends ValidationFormOptions {
+interface Context {
+  getFieldValidationResult: (fieldName: string, fieldValue: string | number | string[]) => { isValid: boolean; messages: string[] };
   isDirty: () => boolean;
 }
 
 export const ValidationMessage: React.SFC<ValidationMessageProps> = (props: ValidationMessageProps, context: Context) => {
   const { fieldName, value, ...otherProps } = props;
-  const { isDirty } = context;
+  const { isDirty, getFieldValidationResult } = context;
 
-  const { isValid, messages } = getValidationResultFor(fieldName, value, context.rules);
+  const { isValid, messages } = getFieldValidationResult(fieldName, value);
 
   if (isValid || !isDirty()) {
     return null;
@@ -27,6 +27,6 @@ export const ValidationMessage: React.SFC<ValidationMessageProps> = (props: Vali
 };
 
 ValidationMessage.contextTypes = {
-  rules: React.PropTypes.object,
-  isDirty: React.PropTypes.func
+  isDirty: React.PropTypes.func,
+  getFieldValidationResult: React.PropTypes.func
 };

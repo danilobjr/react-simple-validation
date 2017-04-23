@@ -4,20 +4,20 @@ import { getValidationResultFor } from './utils/getValidationResultFor';
 
 export const formValidation = (validationProps: ValidationFormOptions) => (WrappedComponent: any) => {
   return class FormValidation extends React.Component<any, any> {
-    static isFieldValid = (fieldName: string, fieldValue: string | number | string[]) => {
-      const { isValid } = getValidationResultFor(fieldName, fieldValue, validationProps.rules);
-      return isValid;
+    static getFieldValidationResult = (fieldName: string, fieldValue: string | number | string[]) => {
+      const result = getValidationResultFor(fieldName, fieldValue, validationProps.rules);
+      return result;
     }
 
     static defaultProps = {
       errorClass: 'error',
-      isFieldValid: FormValidation.isFieldValid
+      getFieldValidationResult: FormValidation.getFieldValidationResult
     };
 
     static childContextTypes = {
       rules: React.PropTypes.object,
       errorClass: React.PropTypes.string,
-      isFieldValid: React.PropTypes.func
+      getFieldValidationResult: React.PropTypes.func
     };
 
     getChildContext() {
@@ -31,7 +31,11 @@ export const formValidation = (validationProps: ValidationFormOptions) => (Wrapp
     isFormValid = (model: { [fieldName: string]: string | number | string[] }) => {
       return Object
         .keys(model)
-        .map(fieldName => FormValidation.isFieldValid(fieldName, model[fieldName]))
+        .map(fieldName =>
+          FormValidation
+            .getFieldValidationResult(fieldName, model[fieldName])
+            .isValid
+        )
         .every(item => item === true);
     }
   } as any;
