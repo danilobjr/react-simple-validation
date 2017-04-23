@@ -7,7 +7,7 @@ export class InputField extends FormFieldComponent<HTMLInputElement> {
     const { className, name, value, ...otherProps } = this.props;
 
     return (
-      <div>
+      <div className={className}>
         <label htmlFor={name}>Name</label>
         <br />
         <input id={name} name={name} value={value} {...otherProps} />

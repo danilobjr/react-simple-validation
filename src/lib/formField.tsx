@@ -43,7 +43,7 @@ export const formField = (WrappedComponent: any) => {
 
       return (
         <WrappedComponent
-          className={classNames(`${className}`, {
+          className={classNames(`${className || ''}`, {
             [`${errorClass}`]: !isValid
           })}
           {...this.props}
