@@ -27,6 +27,6 @@ export const ValidationMessage: React.SFC<ValidationMessageProps> = (props: Vali
 };
 
 ValidationMessage.contextTypes = {
-  isDirty: React.PropTypes.func,
-  getFieldValidationResult: React.PropTypes.func
+  getFieldValidationResult: React.PropTypes.func,
+  isDirty: React.PropTypes.func
 };
