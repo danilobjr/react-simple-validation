@@ -3,15 +3,22 @@ import { ValidationFormOptions } from './ValidationFormOptions';
 import { getValidationResultFor } from './utils/getValidationResultFor';
 
 export const formValidation = (validationProps: ValidationFormOptions) => (WrappedComponent: any) => {
-  return class FormValidation extends React.Component<any, any> {
-    static getFieldValidationResult = (fieldName: string, fieldValue: string | number | string[]) => {
-      const result = getValidationResultFor(fieldName, fieldValue, validationProps.rules);
-      return result;
-    }
+  const getFieldValidationResult = (fieldName: string, fieldValue: string | number | string[]) => {
+    const result = getValidationResultFor(fieldName, fieldValue, validationProps.rules);
+    return result;
+  };
 
+  const isFormValid = (model: { [fieldName: string]: string | number | string[] }) => {
+    return Object
+      .keys(model)
+      .map(fieldName => getFieldValidationResult(fieldName, model[fieldName]).isValid)
+      .every(item => item === true);
+  };
+
+  return class FormValidation extends React.Component<any, any> {
     static defaultProps = {
       errorClass: 'error',
-      getFieldValidationResult: FormValidation.getFieldValidationResult
+      getFieldValidationResult
     };
 
     static childContextTypes = {
@@ -25,18 +32,7 @@ export const formValidation = (validationProps: ValidationFormOptions) => (Wrapp
     }
 
     render() {
-      return <WrappedComponent {...this.props} isFormValid={this.isFormValid} />;
-    }
-
-    isFormValid = (model: { [fieldName: string]: string | number | string[] }) => {
-      return Object
-        .keys(model)
-        .map(fieldName =>
-          FormValidation
-            .getFieldValidationResult(fieldName, model[fieldName])
-            .isValid
-        )
-        .every(item => item === true);
+      return <WrappedComponent {...this.props} isFormValid={isFormValid} />;
     }
   } as any;
 };
