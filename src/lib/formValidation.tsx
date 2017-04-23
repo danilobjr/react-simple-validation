@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ValidationFormOptions } from './ValidationFormOptions'
-import { getValidationResultFor } from './utils/getValidationResultFor'
+import { ValidationFormOptions } from './ValidationFormOptions';
+import { getValidationResultFor } from './utils/getValidationResultFor';
 
 const formValidation = (validationProps: ValidationFormOptions) => (WrappedComponent: any) => {
   return class FormValidation extends React.Component<any, any> {
@@ -12,13 +12,13 @@ const formValidation = (validationProps: ValidationFormOptions) => (WrappedCompo
     static defaultProps = {
       errorClass: 'error',
       isFieldValid: FormValidation.isFieldValid
-    }
+    };
 
     static childContextTypes = {
       rules: React.PropTypes.object,
       errorClass: React.PropTypes.string,
       isFieldValid: React.PropTypes.func
-    }
+    };
 
     getChildContext() {
       return { ...FormValidation.defaultProps, ...validationProps };
@@ -35,4 +35,4 @@ const formValidation = (validationProps: ValidationFormOptions) => (WrappedCompo
         .every(item => item === true);
     }
   } as any;
-}
+};

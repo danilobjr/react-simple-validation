@@ -12,13 +12,13 @@ export const ValidationMessage: React.SFC<any> = (props: ValidationMessageProps,
   const { isValid, messages } = getValidationResultFor(props.fieldName, props.value, context.rules);
 
   if (isValid || !canValidate) {
-    return null;
+    return undefined;
   }
 
   return (
     <span {...otherProps}>{messages[0]}</span>
-  )
-}
+  );
+};
 
 ValidationMessage.contextTypes = {
   rules: React.PropTypes.object

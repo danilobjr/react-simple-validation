@@ -29,7 +29,8 @@
     "semicolon": [
       true,
       "always",
-      "ignore-bound-class-methods"
+      "ignore-bound-class-methods",
+      "ignore-interfaces"
     ],
     "whitespace": [
       true,
@@ -63,11 +64,10 @@
       "check-else"
     ],
     "no-internal-module": true,
-    "no-trailing-whitespace": [
-      true,
-      "ignore-template-strings"
+    "no-trailing-whitespace": true,
+    "no-inferrable-types": [
+      true
     ],
-    "no-inferrable-types": true,
     "no-null-keyword": true,
     "boolean-trivia": true,
     "type-operator-spacing": true,

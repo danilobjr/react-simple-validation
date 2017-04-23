@@ -23,7 +23,7 @@ export const formField = (WrappedComponent: any) => {
     static contextTypes = {
       errorClass: React.PropTypes.string,
       isFieldValid: React.PropTypes.func
-    }
+    };
 
     render() {
       const { className } = this.props;
@@ -68,5 +68,5 @@ export const formField = (WrappedComponent: any) => {
       const { isValid, looseFocus, wasChanged } = this.state;
       return !isValid && (looseFocus || wasChanged);
     }
-  }
-}
+  };
+};

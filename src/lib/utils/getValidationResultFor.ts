@@ -12,4 +12,4 @@ export const getValidationResultFor = (fieldName: string, fieldValue: string | n
   }
 
   return result;
-}
+};
