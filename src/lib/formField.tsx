@@ -47,6 +47,7 @@ export const formField = (WrappedComponent: any) => {
             [`${errorClass}`]: !isValid
           })}
           {...this.props}
+          fieldIsValid={isValid}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
         />

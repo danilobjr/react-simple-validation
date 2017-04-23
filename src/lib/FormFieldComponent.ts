@@ -1,3 +1,7 @@
 import * as React from 'react';
 
-export class FormFieldComponent<THtmlElement> extends React.Component<React.HTMLProps<THtmlElement>, {}> {}
+interface Props<THtmlElement> extends React.HTMLProps<THtmlElement> {
+  fieldIsValid?: boolean;
+}
+
+export class FormFieldComponent<THtmlElement> extends React.Component<Props<THtmlElement>, {}> { }
