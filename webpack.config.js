@@ -18,6 +18,9 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".json", '.ts', '.tsx'],
+    alias: {
+      lib: path.resolve(__dirname, 'src/lib')
+    }
   },
   devtool: 'source-map',
   devServer: {

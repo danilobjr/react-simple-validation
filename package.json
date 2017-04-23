@@ -23,12 +23,14 @@
   },
   "homepage": "https://github.com/danilobjr/react-simple-validation#readme",
   "dependencies": {
+    "classnames": "^2.2.5",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.4"
   },
   "devDependencies": {
+    "@types/classnames": "0.0.32",
     "@types/react": "^15.0.22",
     "@types/react-dom": "^15.5.0",
     "ts-loader": "^2.0.3",

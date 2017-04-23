@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as classNames from 'classnames';
 
 export const formField = (WrappedComponent: any) => {
   interface Props extends React.HTMLProps<HTMLElement> { }
@@ -25,6 +26,16 @@ export const formField = (WrappedComponent: any) => {
       isFieldValid: React.PropTypes.func
     };
 
+    static childContextTypes = {
+      isDirty: React.PropTypes.func
+    };
+
+    getChildContext() {
+      return {
+        isDirty: this.isDirty
+      };
+    }
+
     render() {
       const { className } = this.props;
       const { isValid } = this.state;
@@ -32,11 +43,12 @@ export const formField = (WrappedComponent: any) => {
 
       return (
         <WrappedComponent
-          className={`${className ? className : ''} ${isValid ? '' : errorClass}`}
+          className={classNames(`${className}`, {
+            [`${errorClass}`]: isValid
+          })}
           {...this.props}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
-          canValidate={this.canValidate()}
         />
       );
     }
@@ -64,9 +76,9 @@ export const formField = (WrappedComponent: any) => {
       }
     }
 
-    canValidate = () => {
+    isDirty = () => {
       const { isValid, looseFocus, wasChanged } = this.state;
       return !isValid && (looseFocus || wasChanged);
     }
-  };
+  } as any;
 };

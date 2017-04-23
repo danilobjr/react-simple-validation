@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ValidationFormOptions } from './ValidationFormOptions';
 import { getValidationResultFor } from './utils/getValidationResultFor';
 
-const formValidation = (validationProps: ValidationFormOptions) => (WrappedComponent: any) => {
+export const formValidation = (validationProps: ValidationFormOptions) => (WrappedComponent: any) => {
   return class FormValidation extends React.Component<any, any> {
     static isFieldValid = (fieldName: string, fieldValue: string | number | string[]) => {
       const { isValid } = getValidationResultFor(fieldName, fieldValue, validationProps.rules);

@@ -4,10 +4,10 @@ export const getValidationResultFor = (fieldName: string, fieldValue: string | n
     messages: [] as string[]
   };
 
-  if (!!rules[fieldName]['required']) {
+  if (!!rules[fieldName]['required'] || typeof rules[fieldName] === 'string') {
     if (typeof fieldValue === 'string' && fieldValue.length === 0) {
       result.isValid = false;
-      result.messages.push(rules[fieldName]['required']);
+      result.messages.push(rules[fieldName]['required'] || rules[fieldName]);
     }
   }
 

@@ -1,18 +1,24 @@
 import * as React from 'react';
-import { CanValidateProps } from './CanValidateProps';
 import { ValidationFormOptions } from './ValidationFormOptions';
 import { getValidationResultFor } from './utils/getValidationResultFor';
 
-interface ValidationMessageProps extends CanValidateProps, React.HTMLProps<HTMLElement> {
+interface ValidationMessageProps extends React.HTMLProps<HTMLElement> {
   fieldName: string;
+  value: string | number | string[];
 }
 
-export const ValidationMessage: React.SFC<any> = (props: ValidationMessageProps, context: ValidationFormOptions) => {
-  const { canValidate, fieldName, ...otherProps } = props;
-  const { isValid, messages } = getValidationResultFor(props.fieldName, props.value, context.rules);
+interface Context extends ValidationFormOptions {
+  isDirty: () => boolean;
+}
 
-  if (isValid || !canValidate) {
-    return undefined;
+export const ValidationMessage: React.SFC<ValidationMessageProps> = (props: ValidationMessageProps, context: Context) => {
+  const { fieldName, value, ...otherProps } = props;
+  const { isDirty } = context;
+
+  const { isValid, messages } = getValidationResultFor(fieldName, value, context.rules);
+
+  if (isValid || !isDirty()) {
+    return null;
   }
 
   return (
@@ -21,5 +27,6 @@ export const ValidationMessage: React.SFC<any> = (props: ValidationMessageProps,
 };
 
 ValidationMessage.contextTypes = {
-  rules: React.PropTypes.object
+  rules: React.PropTypes.object,
+  isDirty: React.PropTypes.func
 };
