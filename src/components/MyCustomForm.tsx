@@ -3,25 +3,32 @@ import { formValidation, ValidationFormProps } from 'lib';
 import { InputField } from './InputField';
 
 interface State {
+  email: string;
   name: string;
 }
 
 const rules = {
-  name: 'Name is required'
+  email: {
+    required: 'Email is required',
+    email: 'Please enter a valid email address',
+  },
+  name: 'Name is required',
 };
 
 @formValidation({ rules })
 export class MyCustomForm extends React.Component<ValidationFormProps, State> {
   state = {
-    name: ''
+    email: '',
+    name: '',
   };
 
   render() {
-    const { name } = this.state;
+    const { email, name } = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <InputField name="name" value={name} onChange={this.handleFieldChange} />
+        <InputField label="Name" name="name" value={name} onChange={this.handleFieldChange} />
+        <InputField label="Email" name="email" value={email} onChange={this.handleFieldChange} />
         <button type="submit">Submit</button>
       </form>
     );
