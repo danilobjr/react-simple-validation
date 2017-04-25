@@ -17,22 +17,22 @@ export const formField = (WrappedComponent: any) => {
       this.state = {
         isValid: true,
         wasChanged: this.props.onChange ? false : true,
-        looseFocus: this.props.onBlur ? false : true
+        looseFocus: this.props.onBlur ? false : true,
       };
     }
 
     static contextTypes = {
       errorClass: React.PropTypes.string,
-      isFieldValid: React.PropTypes.func
+      isFieldValid: React.PropTypes.func,
     };
 
     static childContextTypes = {
-      isDirty: React.PropTypes.func
+      isDirty: React.PropTypes.func,
     };
 
     getChildContext() {
       return {
-        isDirty: this.isDirty
+        isDirty: this.isDirty,
       };
     }
 
@@ -44,7 +44,7 @@ export const formField = (WrappedComponent: any) => {
       return (
         <WrappedComponent
           className={classNames(`${className}`, {
-            [`${errorClass}`]: isValid
+            [`${errorClass}`]: isValid,
           })}
           {...this.props}
           onChange={this.handleChange}
