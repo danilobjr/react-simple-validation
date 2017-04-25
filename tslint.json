@@ -61,6 +61,13 @@
     ],
     "no-internal-module": true,
     "no-trailing-whitespace": true,
+    "trailing-comma": [
+      true,
+      {
+        "singleline": "never",
+        "multiline": "always"
+      }
+    ],
     "no-inferrable-types": [
       true
     ],
