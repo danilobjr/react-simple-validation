@@ -11,6 +11,8 @@ export const formField = (WrappedComponent: any) => {
   }
 
   return class FormField extends React.Component<Props, State> {
+    wrappedComponent: any;
+
     constructor(props: Props) {
       super(props);
 
@@ -67,11 +69,12 @@ export const formField = (WrappedComponent: any) => {
 
     tryValidate(e: any) {
       const { looseFocus, wasChanged } = this.state;
+      const { isFieldValid } = this.context;
 
       if (looseFocus || wasChanged) {
         const fieldName = e.target.getAttribute('name');
         const fieldValue = e.target.value;
-        const isValid = this.context.isFieldValid(fieldName, fieldValue);
+        const isValid = isFieldValid(fieldName, fieldValue);
         this.setState({ isValid });
       }
     }
