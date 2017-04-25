@@ -29,7 +29,7 @@ export class MyCustomForm extends React.Component<ValidationFormProps, State> {
       <form onSubmit={this.handleSubmit}>
         <InputField label="Name" name="name" value={name} onChange={this.handleFieldChange} />
         <InputField label="Email" name="email" value={email} onChange={this.handleFieldChange} />
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={!this.isFormValid()}>Submit</button>
       </form>
     );
   }
@@ -41,8 +41,10 @@ export class MyCustomForm extends React.Component<ValidationFormProps, State> {
     this.setState({ [fieldName]: fieldValue } as any);
   }
 
-  handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('form submitted');
+    console.log('form is valid', this.props.isFormValid(this.state));
   }
+
+  isFormValid = () => this.props.isFormValid(this.state);
 }
