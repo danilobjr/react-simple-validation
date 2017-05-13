@@ -1,8 +1,8 @@
 {
   "name": "react-simple-validation",
   "version": "0.1.0",
-  "description": "Easy form validations with decorators in React",
-  "main": "index.js",
+  "description": "Easy form validation with decorators for React apps",
+  "main": "dist/bundle.js",
   "scripts": {
     "dev": "webpack-dev-server"
   },
@@ -16,7 +16,7 @@
     "validation",
     "decorator"
   ],
-  "author": "Danilo Barros <danilobjr@gmail.com>",
+  "author": "Danilo Barros <danilobjr@gmail.com> (http://danilobjr.github.io/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/danilobjr/react-simple-validation/issues"
