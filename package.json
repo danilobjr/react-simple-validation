@@ -24,19 +24,23 @@
   "homepage": "https://github.com/danilobjr/react-simple-validation#readme",
   "dependencies": {
     "classnames": "^2.2.5",
+    "events": "^1.1.1",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "validator": "^7.0.0",
-    "webpack": "^2.4.1",
-    "webpack-dev-server": "^2.4.4"
+    "validator": "^7.0.0"
   },
   "devDependencies": {
     "@types/classnames": "0.0.32",
+    "@types/node": "^7.0.18",
+    "@types/prop-types": "^15.5.1",
     "@types/react": "^15.0.22",
     "@types/react-dom": "^15.5.0",
     "@types/validator": "^6.2.0",
+    "react-dom": "^15.5.4",
     "ts-loader": "^2.0.3",
     "tslint": "^5.1.0",
-    "typescript": "^2.2.2"
+    "typescript": "^2.2.2",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.4"
   }
 }

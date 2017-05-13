@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2015",
-    "noImplicitAny": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "sourceMap": true,
-    "jsx": "react",
-    "experimentalDecorators": true,
     "baseUrl": ".",
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "noImplicitAny": true,
     "paths": {
       "lib": ["src/lib"]
-    }
+    },
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   }
 }

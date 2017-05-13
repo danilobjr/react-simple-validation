@@ -1,32 +1,34 @@
 import * as React from 'react';
-import { ValidationFormOptions } from './ValidationFormOptions';
-import { getValidationResultFor } from './utils/getValidationResultFor';
+import * as PropTypes from 'prop-types';
+import {HTMLProps, SFC} from 'react';
+import {ValidationFormOptions} from './ValidationFormOptions';
+import {getValidationResultFor} from './utils';
 
-interface ValidationMessageProps extends React.HTMLProps<HTMLElement> {
+interface ValidationMessageProps extends HTMLProps<HTMLElement> {
   fieldName: string;
-  value: string | number | string[];
+  fieldValue: string | number | string[];
 }
 
 interface Context extends ValidationFormOptions {
-  isDirty: () => boolean;
+  canDisplayValidationErrors: () => boolean;
 }
 
-export const ValidationMessage: React.SFC<ValidationMessageProps> = (props: ValidationMessageProps, context: Context) => {
-  const { fieldName, value, ...otherProps } = props;
-  const { isDirty } = context;
+export const ValidationMessage: SFC<ValidationMessageProps> = (props: ValidationMessageProps, context: Context) => {
+  const {canDisplayValidationErrors, rules} = context;
+  const {children, fieldName, fieldValue, ...otherProps} = props;
 
-  const { isValid, messages } = getValidationResultFor(fieldName, value, context.rules);
+  const validationResult = rules && getValidationResultFor(fieldName, fieldValue, rules);
 
-  if (isValid || !isDirty()) {
+  if (!validationResult || !canDisplayValidationErrors()) {
     return null;
   }
 
   return (
-    <span {...otherProps}>{messages[0]}</span>
+    <div {...otherProps}>{validationResult.messages[0]}</div>
   );
 };
 
 ValidationMessage.contextTypes = {
-  rules: React.PropTypes.object,
-  isDirty: React.PropTypes.func
+  rules: PropTypes.object,
+  canDisplayValidationErrors: PropTypes.func,
 };

@@ -1,38 +1,52 @@
 import * as React from 'react';
-import { ValidationFormOptions } from './ValidationFormOptions';
-import { getValidationResultFor } from './utils/getValidationResultFor';
+import {PureComponent} from 'react';
+import * as PropTypes from 'prop-types';
+import {ValidationFormOptions} from './ValidationFormOptions';
+import {getValidationResultFor, FormValidationEventEmitter} from './utils';
 
 export const formValidation = (validationProps: ValidationFormOptions) => (WrappedComponent: any) => {
-  return class FormValidation extends React.Component<any, any> {
+  return class FormValidation extends PureComponent<any, any> {
+    eventEmitter: FormValidationEventEmitter;
+
+    constructor() {
+      super();
+
+      this.eventEmitter = FormValidationEventEmitter.getInstance();
+    }
+
     static isFieldValid = (fieldName: string, fieldValue: string | number | string[]) => {
-      const { isValid } = getValidationResultFor(fieldName, fieldValue, validationProps.rules);
+      const {isValid} = getValidationResultFor(fieldName, fieldValue, validationProps.rules);
       return isValid;
     }
 
-    static defaultProps = {
+    static defaultProps: any = {
       errorClass: 'error',
-      isFieldValid: FormValidation.isFieldValid
+      isFieldValid: FormValidation.isFieldValid,
     };
 
-    static childContextTypes = {
-      rules: React.PropTypes.object,
-      errorClass: React.PropTypes.string,
-      isFieldValid: React.PropTypes.func
+    static childContextTypes: any = {
+      rules: PropTypes.object,
+      errorClass: PropTypes.string,
+      isFieldValid: PropTypes.func,
     };
 
     getChildContext() {
-      return { ...FormValidation.defaultProps, ...validationProps };
+      return {...FormValidation.defaultProps, ...validationProps};
     }
 
     render() {
-      return <WrappedComponent {...this.props} isFormValid={this.isFormValid} />;
+      return <WrappedComponent {...this.props} isFormValid={this.isFormValid} validateFormFields={this.validateFormFields} />;
     }
 
-    isFormValid = (model: { [fieldName: string]: string | number | string[] }) => {
+    isFormValid = (model: {[fieldName: string]: string | number | string[]}) => {
       return Object
         .keys(model)
         .map(fieldName => FormValidation.isFieldValid(fieldName, model[fieldName]))
         .every(item => item === true);
+    }
+
+    validateFormFields = () => {
+      this.eventEmitter.triggerFormFieldValidationEvent();
     }
   } as any;
 };

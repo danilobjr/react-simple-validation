@@ -6,17 +6,21 @@ export const getValidationResultFor = (fieldName: string, fieldValue: string | n
     messages: [] as string[],
   };
 
-  if (!!rules[fieldName]['required'] || typeof rules[fieldName] === 'string') {
+  if (!rules.hasOwnProperty(fieldName)) {
+    return result;
+  }
+
+  if (!!rules[fieldName].required || typeof rules[fieldName] === 'string') {
     if (typeof fieldValue === 'string' && fieldValue.length === 0) {
       result.isValid = false;
-      result.messages.push(rules[fieldName]['required'] || rules[fieldName]);
+      result.messages.push(rules[fieldName].required || rules[fieldName]);
     }
   }
 
-  if (!!rules[fieldName]['email']) {
+  if (!!rules[fieldName].email) {
     if (!validator.isEmail(fieldValue.toString())) {
       result.isValid = false;
-      result.messages.push(rules[fieldName]['email']);
+      result.messages.push(rules[fieldName].email);
     }
   }
 

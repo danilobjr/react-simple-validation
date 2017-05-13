@@ -24,6 +24,7 @@ export class MyCustomForm extends React.Component<ValidationFormProps, State> {
 
   render() {
     const { email, name } = this.state;
+    debugger;
 
     return (
       <form onSubmit={this.handleSubmit}>
