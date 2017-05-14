@@ -2,16 +2,16 @@ import * as React from 'react';
 import {PureComponent} from 'react';
 import * as PropTypes from 'prop-types';
 import {ValidationFormOptions} from './ValidationFormOptions';
-import {getValidationResultFor, FormValidationEventEmitter} from './utils';
+import {getValidationResultFor, ValidationFormEventEmitter} from './utils';
 
-export const formValidation = (validationProps: ValidationFormOptions) => (WrappedComponent: any) => {
+export const validationForm = (validationProps: ValidationFormOptions) => (WrappedComponent: any) => {
   return class FormValidation extends PureComponent<any, any> {
-    eventEmitter: FormValidationEventEmitter;
+    eventEmitter: ValidationFormEventEmitter;
 
     constructor() {
       super();
 
-      this.eventEmitter = FormValidationEventEmitter.getInstance();
+      this.eventEmitter = ValidationFormEventEmitter.getInstance();
     }
 
     static isFieldValid = (fieldName: string, fieldValue: string | number | string[]) => {

@@ -1,7 +1,7 @@
 import {EventEmitter} from 'events';
 
-class FormValidationEventEmitter extends EventEmitter {
-  private static instance: FormValidationEventEmitter;
+class ValidationFormEventEmitter extends EventEmitter {
+  private static instance: ValidationFormEventEmitter;
   private VALIDATE_ALL_FORM_FIELDS = 'validateAllFormFields';
 
   private constructor() {
@@ -10,7 +10,7 @@ class FormValidationEventEmitter extends EventEmitter {
 
   static getInstance() {
     if (!this.instance) {
-      this.instance = new FormValidationEventEmitter();
+      this.instance = new ValidationFormEventEmitter();
     }
 
     return this.instance;
@@ -29,4 +29,4 @@ class FormValidationEventEmitter extends EventEmitter {
   }
 }
 
-export {FormValidationEventEmitter};
+export {ValidationFormEventEmitter};

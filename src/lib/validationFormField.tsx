@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as classNames from 'classnames';
-import {FormValidationEventEmitter} from './utils';
+import {ValidationFormEventEmitter} from './utils';
 
 import {ChangeEvent, Component, FocusEvent, HTMLProps} from 'react';
 
-export const formField = (WrappedComponent: any) => {
+export const validationFormField = (WrappedComponent: any) => {
   interface Props extends HTMLProps<HTMLElement> { }
 
   interface State {
@@ -20,7 +20,7 @@ export const formField = (WrappedComponent: any) => {
   }
 
   return class FormField extends Component<Props, State> {
-    private eventEmitter: FormValidationEventEmitter;
+    private eventEmitter: ValidationFormEventEmitter;
     context: Context;
 
     constructor(props: Props, context: Context) {
@@ -37,7 +37,7 @@ export const formField = (WrappedComponent: any) => {
         touched: false,
       };
 
-      this.eventEmitter = FormValidationEventEmitter.getInstance();
+      this.eventEmitter = ValidationFormEventEmitter.getInstance();
     }
 
     static contextTypes: any = {

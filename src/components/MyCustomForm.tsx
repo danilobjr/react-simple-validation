@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { formValidation, ValidationFormProps } from 'lib';
-import { InputField } from './InputField';
+import { Container, Button, Col, Form, FormGroup } from 'reactstrap';
+import { validationForm, ValidationFormProps } from 'lib';
+import { MyCustomInputField } from './MyCustomInputField';
 
 interface State {
   email: string;
@@ -8,14 +9,14 @@ interface State {
 }
 
 const rules = {
+  name: 'Name is required',
   email: {
     required: 'Email is required',
     email: 'Please enter a valid email address',
   },
-  name: 'Name is required',
 };
 
-@formValidation({ rules })
+@validationForm({ rules })
 export class MyCustomForm extends React.Component<ValidationFormProps, State> {
   state = {
     email: '',
@@ -24,14 +25,20 @@ export class MyCustomForm extends React.Component<ValidationFormProps, State> {
 
   render() {
     const { email, name } = this.state;
-    debugger;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <InputField label="Name" name="name" value={name} onChange={this.handleFieldChange} />
-        <InputField label="Email" name="email" value={email} onChange={this.handleFieldChange} />
-        <button type="submit" disabled={!this.isFormValid()}>Submit</button>
-      </form>
+      <Container>
+        <Form onSubmit={this.handleSubmit}>
+          <MyCustomInputField label="Name" name="name" value={name} onChange={this.handleFieldChange} />
+          <MyCustomInputField label="Email" name="email" value={email} onChange={this.handleFieldChange} />
+
+          <FormGroup row>
+            <Col md={{ offset: 2, size: 10 }}>
+              <Button color="primary" type="submit">Submit</Button>
+            </Col>
+          </FormGroup>
+        </Form>
+      </Container>
     );
   }
 
@@ -44,7 +51,14 @@ export class MyCustomForm extends React.Component<ValidationFormProps, State> {
 
   handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('form is valid', this.props.isFormValid(this.state));
+
+    const {isFormValid, validateFormFields} = this.props;
+
+    validateFormFields();
+
+    if (isFormValid(this.state)) {
+      alert('submit form');
+    }
   }
 
   isFormValid = () => this.props.isFormValid(this.state);
