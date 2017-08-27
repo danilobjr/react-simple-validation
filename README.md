@@ -103,7 +103,7 @@ export class MyCustomInputField extends Component<Props, {}> {
 
     return (
       <div>
-        <label for={name}>{label}</Label>
+        <label for={name}>{label}</label>
 
         <div>
           <input
