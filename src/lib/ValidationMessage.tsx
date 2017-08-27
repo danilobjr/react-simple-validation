@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import {HTMLProps, SFC} from 'react';
-import {ValidationFormOptions} from './ValidationFormOptions';
-import {getValidationResultFor} from './utils';
+import { HTMLProps, SFC } from 'react';
+import { ValidationFormOptions } from './ValidationFormOptions';
+import { getValidationResultFor } from './utils';
 
 interface ValidationMessageProps extends HTMLProps<HTMLElement> {
   fieldName: string;
@@ -14,8 +14,8 @@ interface Context extends ValidationFormOptions {
 }
 
 export const ValidationMessage: SFC<ValidationMessageProps> = (props: ValidationMessageProps, context: Context) => {
-  const {canDisplayValidationErrors, rules} = context;
-  const {children, fieldName, fieldValue, ...otherProps} = props;
+  const { canDisplayValidationErrors, rules } = context;
+  const { children, fieldName, fieldValue, ...otherProps } = props;
 
   const validationResult = rules && getValidationResultFor(fieldName, fieldValue, rules);
 

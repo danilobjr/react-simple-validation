@@ -1,2 +1,2 @@
-export {getValidationResultFor} from './getValidationResultFor';
-export {ValidationFormEventEmitter} from './ValidationFormEventEmitter';
+export { getValidationResultFor } from './getValidationResultFor';
+export { FormValidationEventEmitter } from './FormValidationEventEmitter';
