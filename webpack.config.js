@@ -1,12 +1,13 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const resolvePath = value => path.resolve(__dirname, value)
 
 module.exports = {
-  entry: resolvePath('src/index.tsx'),
+  entry: resolvePath('src/demo/index'),
   output: {
     filename: 'react-simple-validation.js',
-    path: resolvePath('dist')
+    path: resolvePath('./'),
   },
   module: {
     rules: [
@@ -14,17 +15,23 @@ module.exports = {
         test: /\.tsx?$/,
         loader: 'ts-loader'
       },
-    ]
+    ],
   },
   resolve: {
-    extensions: [".js", ".json", '.ts', '.tsx'],
+    extensions: ['.js', '.json', '.ts', '.tsx'],
     alias: {
-      lib: path.resolve(__dirname, 'src/lib')
-    }
+      lib: path.resolve(__dirname, 'src/lib'),
+    },
   },
-  devtool: 'source-map',
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: resolvePath(`src/demo/index.ejs`),
+      inject: true,
+    }),
+  ],
+  devtool: 'eval-source-map',
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
-    port: 9000
-  }
+    contentBase: path.join(__dirname, './'),
+    port: 9000,
+  },
 }
