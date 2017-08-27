@@ -2,13 +2,13 @@
   "compilerOptions": {
     "baseUrl": ".",
     "experimentalDecorators": true,
+    "importHelpers": true,
     "jsx": "react",
-    "module": "commonjs",
-    "noImplicitAny": true,
+    "module": "es2015",
+    "moduleResolution": "node",
     "paths": {
       "lib": ["src/lib"]
     },
-    "preserveConstEnums": true,
     "removeComments": true,
     "sourceMap": true,
     "target": "es2015",
