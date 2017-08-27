@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Container, Button, Col, Form, FormGroup } from 'reactstrap';
-import { validationForm, ValidationFormProps } from 'lib';
+import { formValidation, ValidationFormProps } from 'lib';
 import { MyCustomInputField } from './MyCustomInputField';
 
 interface State {
@@ -16,9 +16,9 @@ const rules = {
   },
 };
 
-@validationForm({ rules })
+@formValidation({ rules })
 export class MyCustomForm extends React.Component<ValidationFormProps, State> {
-  state = {
+  state: State = {
     email: '',
     name: '',
   };
@@ -56,10 +56,10 @@ export class MyCustomForm extends React.Component<ValidationFormProps, State> {
 
     validateFormFields();
 
-    if (isFormValid(this.state)) {
+    if (isFormValid(this.state as any)) {
       alert('submit form');
     }
   }
 
-  isFormValid = () => this.props.isFormValid(this.state);
+  isFormValid = () => this.props.isFormValid(this.state as any);
 }

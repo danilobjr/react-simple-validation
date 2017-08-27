@@ -1,20 +1,21 @@
 import * as React from 'react';
 import { Component, HTMLProps } from 'react';
 import { Col, FormGroup, Input, Label } from 'reactstrap';
-import { validationFormField, ValidationFormFieldProps, ValidationMessage } from 'lib';
+import { formField, ValidationFormFieldProps, ValidationMessage } from 'lib';
 
 const ReactstrapInput: any = Input;
 
 interface Props extends HTMLProps<HTMLInputElement>, ValidationFormFieldProps {}
 
-@validationFormField
+@formField
 export class MyCustomInputField extends Component<Props, {}> {
   render() {
     const { className, isValid, label, name, value, ...otherProps } = this.props;
+    const formGroupColor = isValid ? '' : 'danger';
 
     return (
       <FormGroup
-        color={!isValid && 'danger'}
+        color={formGroupColor}
         row
       >
         <Label md={2} for={name}>{label}</Label>
