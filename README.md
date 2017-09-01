@@ -22,7 +22,7 @@ Define some rules using `@formValidation` decorator.
 _Note: Code below uses Typescript, but you can use vanilla Javascript as well._
 
 ```JSX
-import {formValidation} from 'react-simple-validation';
+import { formValidation } from 'react-simple-validation';
 
 @formValidation({
   rules: {
@@ -38,7 +38,7 @@ Every property inside `rules` object is the `name` attribute of a form input. We
 _Tip: `required` is the default rule. So we can rewrite it:_
 
 ```JSX
-import {formValidation} from 'react-simple-validation';
+import { formValidation } from 'react-simple-validation';
 
 @formValidation({
   rules: {
@@ -51,8 +51,8 @@ Use this decorator in a class component containing a form.
 
 ```JSX
 import * as React from 'react';
-import {formValidation} from 'react-simple-validation';
-const {PureComponent} = React;
+import { PureComponent } from React;
+import { formValidation } from 'react-simple-validation';
 
 interface State {
   email: string;
@@ -81,8 +81,8 @@ Create a custom field component.
 
 ```JSX
 import * as React from 'react';
+import { PureComponent, HTMLProps } from React;
 import { formField, ValidationFormFieldProps, ValidationMessage } from 'react-simple-validation';
-const { PureComponent, HTMLProps } = React;
 
 const styles = {
   input: {
@@ -154,7 +154,7 @@ export class MyFormComponent extends Component<{}, State> {
       <MyCustomInputField
         name="email"
         value={email}
-        onChange={e => this.setState({email: e.target.value})}
+        onChange={e => this.setState({ email: e.target.value })}
       />
 
       <button type="submit">Submit</button>
